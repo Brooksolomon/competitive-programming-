@@ -10,5 +10,4 @@ class Solution:
                 answer[i - 1] = "Buzz"
             if i % 3 == 0 and i % 5 == 0 :
                 answer[i - 1] = "FizzBuzz"
-            else
         return answer
