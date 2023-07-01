@@ -1,0 +1,12 @@
+class Solution:
+    def dividePlayers(self, skill: List[int]) -> int:
+        avg = sum(skill) //  (len(skill)//2)
+        skill=sorted(skill)
+        prod=0
+        for i in range(len(skill)//2):
+            if skill[i] + skill [len(skill) - 1 - i] == avg:
+                prod+=skill[i] * skill [len(skill) - 1 - i]
+            else:
+                return -1
+        return prod
+
