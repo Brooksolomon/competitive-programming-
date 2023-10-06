@@ -1,12 +1,13 @@
 class Solution:
     def targetIndices(self, nums: List[int], target: int) -> List[int]:
-        indices=[]
-        x=len(nums)
-        for i in range(x):
-            for j in range(x):
-                if nums[i]<nums[j]:
-                    nums[i],nums[j]=nums[j],nums[i]
-        for i in range(x):
-            if nums[i]==target:
-                indices.append(i)
-        return indices
+        count=[0] * (max(nums) + 1)
+        for i in nums:
+            count[i] +=1
+        tots=0
+        for i in range(len(count)):
+            if i!=target:
+                tots+=count[i]
+            else:
+                return [tots+i for i in range(count[i])]
+
+        
