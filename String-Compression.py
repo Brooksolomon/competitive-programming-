@@ -1,40 +1,32 @@
 class Solution:
     def compress(self, chars: List[str]) -> int:
-        left= right = 0
-        count=0
-        bud=0
-        put=0
-        while right < len(chars):
-            if chars[left] == chars[right]:
-                if count==1:
-                    chars[put] = chars[left]
-                    put+=1
-                count+=1
+        if len(chars)<2:
+            return 
+        left = 0
+        right = 1
+        write = 0
+        while right <= len(chars) :
+            if right < len(chars) and  chars[left] == chars[right]:
+                while right < len(chars)  and chars[left] == chars[right]:
+                    right+=1
+                val = str((right-left))
+                chars[write]=chars[left]
+                write+=1
+                for i in val:
+                    chars[write] = i
+                    write+=1
+                    
+
+                left=right
                 right+=1
             else:
-                if count==1:
-                    chars[put] = chars[left]
-                    put+=1
-                elif count>1:
-                    for i in str(count):
-                        chars[put] = i
-                        left+=1
-                        put+=1
-                    bud = left+1
-                count = 0
-                left=right
-        if count == 1:
-            chars[put] = chars[left]
-            put += 1
-        elif count > 1:
-            for i in str(count):
-                chars[put] = i
-                left += 1
-                put+=1
-            bud = left+1
-
-        print(chars)
-        return put
+                chars[write] = chars[left]
+                left+=1
+                right+=1
+                write+=1
 
 
-                    
+        for _ in range(len(chars) - write):
+            chars.pop()
+            
+        
