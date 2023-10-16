@@ -1,15 +1,13 @@
 class Solution:
     def partitionLabels(self, s: str) -> List[int]:
         Final = []
-        one = two = 0 
+        lastappend = maxindex = 0 
+        md = {}
+        for i in set(s):
+            md[i] = s.rindex(i)
         for i in range(len(s)):
-            two = max(two,s.rindex(s[i]))
-            if i == two:
-                Final.append(two-one+1)
-                one = two + 1
+            maxindex = max(maxindex,md.get(s[i],0))
+            if i == maxindex:
+                Final.append(maxindex-lastappend+1)
+                lastappend = maxindex + 1
         return Final
-                  
-        
-
-
-            
