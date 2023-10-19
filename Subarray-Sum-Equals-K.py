@@ -1,19 +1,11 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        ps=[]
-        d = {}
-        s=0
-        c=0
+        presum = 0
+        md = {0:1}
+        count = 0
         for i in nums:
-            s += i
-            ps.append(s) 
-        for i in ps:
-            if i - k in d:
-                c +=d[i-k]
-            if i==k:
-                c+=1
-            if i in d:
-                d[i]+=1
-            else:
-                d[i]=1
-        return c
+            presum+=i
+            if md.get(presum-k,0):
+                count +=md.get(presum-k,0)
+            md[presum] = md.get(presum,0) + 1
+        return count
