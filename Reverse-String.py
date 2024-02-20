@@ -1,11 +1,10 @@
 class Solution:
     def reverseString(self, s: List[str]) -> None:
-        def recc ( x , y , s):
-            if x>=y:
-                return
-            s[x],s[y] = s[y],s[x]
-            recc(x+1,y-1,s)
-        y=len(s) - 1
-        recc(0,y,s)
-        
-        
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        left, right = 0, len(s)-1
+        while left < right:
+            s[left], s[right] = s[right], s[left]
+            left+=1
+            right-=1
